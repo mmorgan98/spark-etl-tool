@@ -1,0 +1,34 @@
+{
+    "spark_config": {
+        "spark.master": "local",
+        "config": {
+            "spark.driver.memory": "2g",
+            "spark.executor.memory": "2g",
+            "spark.executor.cores": "2"
+        }
+    },
+    "job_config": {
+        "steps": [
+            {
+                "type": "fetch",
+                "df_name": "STEP_1_DATA",
+                "format": "rest",
+                "options": {
+                    "url": "https://covid-19-data.p.rapidapi.com/country/code?format=json&code=it"
+                }
+            }
+        ]
+    },
+    "export_config": {
+        "export_list": [
+            {
+                "name": "STEP_1_DATA",
+                "type": "csv",
+                "path": "output/step_1_data.csv"
+            }
+        ]
+    },
+    "logging_config": {
+        "log_level": "INFO"
+    }
+}
