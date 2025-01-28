@@ -1,0 +1,44 @@
+{
+    "spark_config": {
+        "spark.master": "local",
+        "config": {
+            "spark.driver.memory": "2g",
+            "spark.executor.memory": "2g",
+            "spark.executor.cores": "2"
+        }
+    },
+    "job_config": {
+        "steps": [
+            {
+                "type": "fetch",
+                "df_name": "APPLE_STOCK_DATA_EOD",
+                "format": "rest",
+                "options": {
+                    "url": "https://api.marketstack.com/v2/eod",
+                    "params": {
+                        "access_key": "${MARKETSTACK_API_KEY}",
+                        "symbols": "AAPL"
+                    },
+                    "headers": {
+                    
+                    },
+                    "data_key": "data",
+                    "file_format": "json"
+                }
+            }
+        ]
+    },
+    "export_config": {
+        "export_list": [
+            {
+                "name": "APPLE_STOCK_DATA_EOD",
+                "format": "csv",
+                "path": "output/",
+                "file_name": "APPLE_STOCK_DATA_EOD-[DATE]"
+            }
+        ]
+    },
+    "logging_config": {
+        "log_level": "INFO"
+    }
+}
