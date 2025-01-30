@@ -1,0 +1,28 @@
+{
+    "spark_config": {
+        "spark.master": "local",
+        "config": {
+            "spark.driver.memory": "2g",
+            "spark.executor.memory": "2g",
+            "spark.executor.cores": "2"
+        }
+    },
+    "job_config": {
+        "steps": [
+            {
+                "type": "script",
+                "format": "python",
+                "script": "batch_download_scan_imgs_zips.py",
+                "options": {
+                }
+            }
+        ]
+    },
+    "export_config": {
+        "export_list": [
+        ]
+    },
+    "logging_config": {
+        "log_level": "INFO"
+    }
+}

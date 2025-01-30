@@ -12,6 +12,7 @@
             {
                 "type": "fetch",
                 "df_name": "APPLE_STOCK_DATA_EOD",
+                "memory_level": "disk",
                 "format": "rest",
                 "options": {
                     "url": "https://api.marketstack.com/v2/eod",

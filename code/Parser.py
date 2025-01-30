@@ -3,7 +3,7 @@ import os
 class Parser:
     def __init__(self, job_name):
         self.job_name = job_name
-        self.job_file_path = f"../configs/{job_name}/{job_name}.json"
+        self.job_file_path = f"../configs/{job_name.lower()}/{job_name.lower()}.json"
         with open(self.job_file_path) as f:
             def json_expandvars(o):
                 if isinstance(o, dict):

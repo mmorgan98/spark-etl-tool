@@ -1,0 +1,5 @@
+.venv
+code/output/
+.env.sh
+code/.env.sh
+code/__pycache__/

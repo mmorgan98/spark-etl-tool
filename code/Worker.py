@@ -22,6 +22,8 @@ class Worker:
     def execute(self, step):
         if step['type'] == 'fetch':
             self.memory[step['df_name']] = self.spark.fetch(step['format'], step['df_name'], step['options'])
+        elif step['type'] == 'script':
+            self.script(step)
     
     def export(self):
         for export_item in self.export_config['export_list']:
@@ -29,6 +31,10 @@ class Worker:
             self.spark.export(self.memory[export_item['name']], export_item)
             self.logger.log_event("INFO", f"Exported {export_item['name']}")
 
+    def script(self, step):
+        self.logger.log_event("INFO", f"Executing {step['format']} script {step['script']}")
+        exec(open(f"./scripts/{step['script']}", ).read(), step['options'])
+        self.logger.log_event("INFO", f"Executed {step['format']} script {step['script']}")
 
 if __name__ == '__main__':
     import sys
