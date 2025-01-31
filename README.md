@@ -11,10 +11,13 @@
 9. In project code directory, make sure there is an "output" folder.
 10. Create .env.sh file in code directory with currently these secret values:
 
-    ```export MARKETSTACK_API_KEY="<secret value>"```
+    ```export MARKETSTACK_API_KEY="<secret value>"
+    export POSTGRES_JDBC_URL="<secret value>"
+    export POSTGRES_USER="<secret value>"
+    export POSTGRES_PASSWORD="<secret value>"```
+Note: replace "secret value" with corresponding secret.
 
-    Note: replace <secret value> with corresponding secret.
-12. In code directory, run: ```source .env.sh```
+11. In code directory, run: ```source .env.sh```
    
 ## STARTUP
 1. Clone the repo. SSH preferred, instructions here: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
