@@ -27,8 +27,12 @@ Note: replace "secret value" with corresponding secret.
 
 ## TOOLS
 1. If on Windows, I recommend using WSL. How to enable here: https://learn.microsoft.com/en-us/windows/wsl/install
-2. I recommend using vscode for development (extensions TBD): https://code.visualstudio.com/download
+2. I recommend using vscode for development: https://code.visualstudio.com/download
 3. You can setup vscode to use WSL by default: https://code.visualstudio.com/docs/remote/wsl
+
+## VSCode Extensions
+1. SQL query client: https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-database-client2
+2. WSL: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
 
 ## NEXT STEPS
 1. ~~Test JDBC connections to local or hosted relational DBs~~
