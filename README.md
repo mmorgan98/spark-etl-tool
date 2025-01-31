@@ -31,7 +31,7 @@ Note: replace "secret value" with corresponding secret.
 3. You can setup vscode to use WSL by default: https://code.visualstudio.com/docs/remote/wsl
 
 ## NEXT STEPS
-1. Test JDBC connections to local or hosted relational DBs
+1. ~~Test JDBC connections to local or hosted relational DBs~~
 2. Create custom py script for loading into non-relational DBs
 3. Email/text alerts for job kickoff, failures, warnings, and completion. This configuration will be set in the JSON config. Notes on this: Allow different levels of notifications (only on completion, only on failure, etc.). Also will send standard output from the job run in the email/text. 
 4. UI for scheduling jobs, creating jobs, maintaining jobs (Personal preference is React, will make this in a separate repo, and we will need a relational DB for basic metadata stores.)
