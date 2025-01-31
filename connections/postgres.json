@@ -1,0 +1,6 @@
+{
+    "url": "${POSTGRES_JDBC_URL}",
+    "user": "${POSTGRES_USER}",
+    "password": "${POSTGRES_PASSWORD}",
+    "driver": "org.postgresql.Driver"
+}
