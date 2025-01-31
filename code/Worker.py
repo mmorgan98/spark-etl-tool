@@ -21,9 +21,27 @@ class Worker:
     
     def execute(self, step):
         if step['type'] == 'fetch':
-            self.memory[step['df_name']] = self.spark.fetch(step['format'], step['df_name'], step['options'])
+            self.logger.log_event("INFO", f"Fetching {step['df_name']}")
+            self.fetch(step)
+            self.logger.log_event("INFO", f"Fetched {step['df_name']}")
         elif step['type'] == 'script':
+            self.logger.log_event("INFO", f"Executing {step['format']} script {step['script']}")
             self.script(step)
+            self.logger.log_event("INFO", f"Executed {step['format']} script {step['script']}")
+        elif step['type'] == 'load':
+            self.logger.log_event("INFO", f"Loading {step['df_name']}")
+            self.load(step)
+            self.logger.log_event("INFO", f"Loaded {step['df_name']}")
+    
+    def fetch(self, step):
+        self.memory[step['df_name']] = self.spark.fetch(step['format'], step['df_name'], step['options'])
+    
+    def load(self, step):
+        if step['format'] == 'jdbc':
+            connection = self.parser.get_connection_config(step['connection'])
+            for key, val in connection.items():
+                step['options'][key] = val
+        self.spark.load(self.memory[step['df_name']], step['format'], step['mode'], step['options'])
     
     def export(self):
         for export_item in self.export_config['export_list']:
@@ -32,9 +50,7 @@ class Worker:
             self.logger.log_event("INFO", f"Exported {export_item['name']}")
 
     def script(self, step):
-        self.logger.log_event("INFO", f"Executing {step['format']} script {step['script']}")
         exec(open(f"./scripts/{step['script']}", ).read(), step['options'])
-        self.logger.log_event("INFO", f"Executed {step['format']} script {step['script']}")
 
 if __name__ == '__main__':
     import sys

@@ -4,7 +4,8 @@
         "config": {
             "spark.driver.memory": "2g",
             "spark.executor.memory": "2g",
-            "spark.executor.cores": "2"
+            "spark.executor.cores": "2",
+            "spark.jars": "/home/mmorgan98/projects/spark-etl-tool/lib/postgresql-42.7.5.jar"
         }
     },
     "job_config": {
@@ -12,7 +13,6 @@
             {
                 "type": "fetch",
                 "df_name": "APPLE_STOCK_DATA_EOD",
-                "memory_level": "disk",
                 "format": "rest",
                 "options": {
                     "url": "https://api.marketstack.com/v2/eod",
@@ -26,6 +26,17 @@
                     "data_key": "data",
                     "file_format": "json"
                 }
+            },
+            {
+                "type": "load",
+                "df_name": "APPLE_STOCK_DATA_EOD",
+                "format": "jdbc",
+                "mode": "append",
+                "connection": "postgres",
+                "options": {
+                    "dbtable": "mmorgan98.apple_stock_data_eod"
+                }
+
             }
         ]
     },

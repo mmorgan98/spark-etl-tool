@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from Dataframe import Dataframe
 class Spark:
     def __init__(self, parser):
+        self.parser = parser
         self.spark_config = parser.get_spark_config()
         self.job_name = parser.get_job_name()
         self.export_replace_config = {
@@ -35,6 +36,9 @@ class Spark:
             df = self.spark.read.format(format).options(**options).load()
         return Dataframe(df_name, df)
     
+    def load(self, df, format, mode, options):
+        df.get_spark_df().write.format(format).mode(mode).options(**options).save()
+
     def export(self, df, options):
         for key in self.export_replace_config.keys():
             options['file_name'] = options['file_name'].replace(key, self.export_replace_config[key])
