@@ -20,9 +20,8 @@ Note: replace "secret value" with corresponding secret.
 11. In code directory, run: ```source .env.sh```
    
 ## STARTUP
-1. Clone the repo. SSH preferred, instructions here: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-2. In project root directory, make sure prerequisites 3-5 have been done and the virtual environment is activated and all required packages are installed.
-3. In code directory, run a sample test to bring in 100000 ct scan images: ```python Worker.py ctscans```
+1. In project root directory, make sure prerequisites have been done, the virtual environment is activated and all required packages are installed.
+2. In code directory, run a sample test to bring in 100000 ct scan images: ```python Worker.py ctscans```
 
 
 ## TOOLS
