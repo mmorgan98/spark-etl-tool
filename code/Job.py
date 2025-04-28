@@ -99,7 +99,7 @@ class Job:
     def set_spark_option(self, option_key: str, option_val: str):
         result = self.job_collection.update_one(
             {'job_name': self.job_name},
-            {'$set': {f'spark_config.config.{option_key.replace('.','_dot_')}': option_val}}
+            {'$set': {f'spark_config.config.{option_key.replace(".", "_dot_")}': option_val}}
         )
         if result.modified_count > 0:
             return {"status": 200, "message": f"Spark options updated for job {self.job_name}."}
@@ -146,7 +146,7 @@ class Job:
     def delete_spark_option(self, option_key: str):
         result = self.job_collection.update_one(
             {'job_name': self.job_name},
-            {'$unset': {f'spark_config.config.{option_key.replace('.','_dot_')}': 1}}
+            {'$unset': {f'spark_config.config.{option_key.replace(".", "_dot_")}': 1}}
         )
         if result.modified_count > 0:     
             return {"status": 200, "message": f"Spark option {option_key} deleted from job {self.job_name}."}
